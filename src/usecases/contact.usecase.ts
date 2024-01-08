@@ -1,5 +1,5 @@
 import { UserRepository } from './../interfaces/user.interface';
-import { ContactRepository, ContactCreate } from './../interfaces/contacts.interface';
+import { ContactRepository, ContactCreate, Contact } from './../interfaces/contacts.interface';
 import { ContactsRepositoryPrisma } from "../repositories/contacts.repository";
 import { UserRepositoryPrisma } from '../repositories/user.repository';
 
@@ -57,5 +57,18 @@ export class ContactUseCase {
     return contacts
 
   }
+
+
+  async udpateContact ({id,  name, email, phone} : Contact) {
+
+    const data = await this.contactRepository.updateContact({id,  name, email, phone})
+
+
+
+
+    return data
+
+  }
+
 
 }

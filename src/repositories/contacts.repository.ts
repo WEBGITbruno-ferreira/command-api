@@ -36,5 +36,18 @@ export class ContactsRepositoryPrisma implements ContactRepository {
     return result
   }
 
+  async updateContact ({id,  name, email, phone} : Contact): Promise<Contact>{
+    const result = await prisma.contatcs.update({
+      where : {
+        id
+      },
+      data : {
+        email, name, phone
+      }
+    })
+
+    return result
+  }
+
 
 }

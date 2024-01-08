@@ -38,4 +38,17 @@ export async function contactsRoutes(fastify: FastifyInstance) {
     }
   })
 
+
+    //@ts-ignore
+    fastify.put('/:id', async (req, reply) => {
+      const {id } = req.params
+      const {name, email, phone } = req.body
+      try {
+        const data = await contactUseCase.udpateContact({id, name, email, phone })
+        return reply.send(data)
+      } catch (error) {
+        reply.send(error)
+      }
+    })
+
 }
