@@ -28,8 +28,14 @@ export async function contactsRoutes(fastify: FastifyInstance) {
   })
 
   //@ts-ignore
-  fastify.get('/', (req, reply) => {
-    reply.send({ hello: 'oi' })
+  fastify.get('/', async (req, reply) => {
+    const emailUser = req.headers['email']
+    try {
+      const data = await contactUseCase.listAllContacts(emailUser)
+      return reply.send(data)
+    } catch (error) {
+      reply.send(error)
+    }
   })
 
 }

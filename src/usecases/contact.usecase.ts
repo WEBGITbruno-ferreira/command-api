@@ -41,4 +41,21 @@ export class ContactUseCase {
     return contact
 
   }
+
+  async listAllContacts (userEmail : string) {
+
+    const user = await this.userRepository.findByEmail(userEmail)
+
+    if(!user){
+      throw new Error("Usuário não autenticado");
+      
+    }
+
+
+    const contacts = await this.contactRepository.findAllContacts(user.id)
+
+    return contacts
+
+  }
+
 }
