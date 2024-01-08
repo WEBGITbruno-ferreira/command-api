@@ -17,6 +17,7 @@ model User {
   email String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Contacts Contatcs[]
 
   @@map("users")
 }
@@ -26,4 +27,6 @@ model Contatcs {
   name String
   email String
   phone String
+  userId String
+  user User @relation(fields: [userId], references: [id])
 }
