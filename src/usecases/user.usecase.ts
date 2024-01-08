@@ -2,9 +2,9 @@ import { User } from './../interfaces/user.interface';
 import { UserCreate, UserRepository } from "../interfaces/user.interface"
 import { UserRepositoryPrisma } from "../repositories/user.repository"
 
-class UserUseCase {
+export class UserUseCase {
 
-  private UserRepository : UserRepositoryPrisma
+  private UserRepository : UserRepository
 
 
   constructor(){
@@ -12,6 +12,12 @@ class UserUseCase {
   }
 
   async create({name, email} : UserCreate): Promise<User>{
+
+    const result = await this.UserRepository.create({
+      email, name
+    });
+
+    return result
 
   }
 }

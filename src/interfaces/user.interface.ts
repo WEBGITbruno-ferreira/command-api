@@ -10,5 +10,5 @@ export interface UserCreate {
 }
 
 export interface UserRepository{
-  create(data: User): Promise<User>
+  create(data: UserCreate): Promise<User>
 }
